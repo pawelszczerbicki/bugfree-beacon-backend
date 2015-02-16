@@ -8,6 +8,7 @@ coverage
 .grunt
 build/Release
 .lock-wscript
+config/local.js
 node_modules
 bower_components
 .tmp

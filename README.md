@@ -5,8 +5,8 @@ A [Sails](http://sailsjs.org) application running as backend server storing info
 #Deploy
     push to branch master
 
-#Caution! Please use DEV as default branch
-    push to master only in case of deploy. Before deploy merge dev to master
+#Please use DEV as default branch
+push to master only in case of deploy. Before deploy merge dev to master
 
 #Prerequisites
     sudo npm -g install sails

@@ -3,11 +3,8 @@ module.exports = {
   attributes: {
     imei: {
       type: 'string',
+      required: true,
       size: 15
-    },
-    date: {
-      type: 'datetime',
-      required: true
     },
     beacon_uuid : {
       type: 'string',

@@ -18,6 +18,14 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-     connection: 'productionMongoDatabase'
+     connections: {
+       mongoDB: {
+         host: process.env.BEACON_MONGO_HOST,
+         port: process.env.BEACON_MONGO_PORT,
+         user: process.env.BEACON_MONGO_USER,
+         password: process.env.BEACON_MONGO_PASSWORD,
+         database: process.env.BEACON_MONGO_DATABASE
+       }
+     }
   }
 };

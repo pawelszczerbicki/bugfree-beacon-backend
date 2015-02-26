@@ -4,23 +4,24 @@ module.exports = {
     uuid: {
       type: 'string',
       required: true,
-      unique: true,
-      primaryKey: true
+    },
+    major: {
+      type: 'integer',
+      required: true
+    },
+    minor: {
+      type: 'integer',
+      required: true
     },
     customer: {
       type: 'string',
       required: true,
     },
-    tag: {
-      type: 'array',
-    },
     name: {
       type: 'string',
       required: true
     },
-    activeRange: {
-      type: 'float'
-    },
-    content: 'string'
+    image_url: 'string',
+    push_text: 'string'
   }
 };

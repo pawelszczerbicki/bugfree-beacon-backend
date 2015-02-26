@@ -1,7 +1,14 @@
 module.exports = {
 
   attributes: {
-    name: 'string',
+    name: {
+      type: 'string',
+      requried: true
+    },
+    description: 'string',
+    latitude: 'float',
+    longitude: 'float',
+    tags: 'array',
     email: {
       type: 'email',
       required: true

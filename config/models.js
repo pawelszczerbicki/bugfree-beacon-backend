@@ -1,3 +1,3 @@
 module.exports.models = {
-  migrate: 'drop'
+  migrate: 'safe'
 };

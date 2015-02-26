@@ -3,7 +3,7 @@ module.exports = {
   attributes: {
     name: {
       type: 'string',
-      requried: true
+      required: true
     },
     description: 'string',
     latitude: 'float',

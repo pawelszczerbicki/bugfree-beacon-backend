@@ -17,17 +17,18 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
+  connections: {
+    mongoProd: {
+      adapter: 'sails-mongo',
+      host: process.env.BEACON_MONGO_HOST,
+      port: process.env.BEACON_MONGO_PORT,
+      user: process.env.BEACON_MONGO_USER,
+      password: process.env.BEACON_MONGO_PASSWORD,
+      database: process.env.BEACON_MONGO_DATABASE
+    }
+  },
+
   models: {
-     connections: {
-       mongoDB: {
-         host: process.env.BEACON_MONGO_HOST,
-         port: process.env.BEACON_MONGO_PORT,
-         user: process.env.BEACON_MONGO_USER,
-         password: process.env.BEACON_MONGO_PASSWORD,
-         database: process.env.BEACON_MONGO_DATABASE
-       }
-     },
-    
-    migrate: 'safe'
+    connection: 'mongoProd'
   }
 };

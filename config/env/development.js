@@ -17,8 +17,16 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-  models: {
-     connection: 'mongoDB'
-  }
+  connections: {
+    mongoDev: {
+      adapter: 'sails-mongo',
+      host: 'localhost',
+      port: 27017,
+      database: 'beacon'
+    }
+  },
 
+  models: {
+    connection: 'mongoDev'
+  }
 };

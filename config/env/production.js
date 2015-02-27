@@ -26,6 +26,8 @@ module.exports = {
          password: process.env.BEACON_MONGO_PASSWORD,
          database: process.env.BEACON_MONGO_DATABASE
        }
-     }
+     },
+    
+    migrate: 'safe'
   }
 };

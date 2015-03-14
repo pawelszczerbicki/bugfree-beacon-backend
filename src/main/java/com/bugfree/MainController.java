@@ -20,7 +20,7 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Beacon some(Beacon b) {
-        return beaconDao.get(b.getUuid(), b.getMinor(), b.getMajor());
+    public Beacon[] some(Beacon b) {
+        return new Beacon[]{beaconDao.get(b.getUuid(), b.getMinor(), b.getMajor())};
     }
 }

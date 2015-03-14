@@ -10,11 +10,11 @@
 
     <context:component-scan base-package="com.bugfree"/>
     <mvc:annotation-driven />
-    <mongo:mongo id="mongo" host="#{systemEnvironment['MONGO_URL']?: 'localhost'}"
+    <mongo:mongo id="mongo" host="#{systemEnvironment['MONGO_HOST']?: 'localhost'}"
                  port="#{systemEnvironment['MONGO_PORT']?:27017}"/>
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="#{systemEnvironment['DATABASE_NAME']?: 'bejkon'}"/>
+        <constructor-arg name="databaseName" value="#{systemEnvironment['MONGO_DATABASE']?: 'bejkon'}"/>
         <constructor-arg name="userCredentials" ref="mongoCredentials"/>
     </bean>
     <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">

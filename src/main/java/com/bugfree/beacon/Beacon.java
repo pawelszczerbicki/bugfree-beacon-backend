@@ -20,7 +20,9 @@ public class Beacon {
 
     private Integer minor;
 
-    private String photoUrl;
+    private String imageUrl;
+
+    private String name;
 
     private String pushText;
 

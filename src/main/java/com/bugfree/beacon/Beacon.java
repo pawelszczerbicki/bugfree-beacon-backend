@@ -28,6 +28,8 @@ public class Beacon {
 
     private String pushText;
 
+    private String additionalDataUrl;
+
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -104,5 +106,13 @@ public class Beacon {
 
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public String getAdditionalDataUrl() {
+        return additionalDataUrl;
+    }
+
+    public void setAdditionalDataUrl(String additionalDataUrl) {
+        this.additionalDataUrl = additionalDataUrl;
     }
 }

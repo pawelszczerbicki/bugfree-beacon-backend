@@ -64,12 +64,20 @@ public class Beacon {
         this.minor = minor;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPushText() {

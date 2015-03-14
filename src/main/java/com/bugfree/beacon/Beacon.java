@@ -1,5 +1,6 @@
 package com.bugfree.beacon;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 /**
  * Created by pawel on 14.03.15.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Beacon {
 
     @Id

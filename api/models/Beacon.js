@@ -21,7 +21,7 @@ module.exports = {
       type: 'string',
       required: true
     },
-    image_url: 'string',
-    push_text: 'string'
+    imageUrl: 'string',
+    pushText: 'string'
   }
 };

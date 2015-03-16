@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CustomerController {
 
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerDao customerDao;
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public Customer[] find(String id) {
-        return new Customer[] { customerDAO.get(id) };
+        return new Customer[] { customerDao.findOne(id) };
     }
 }

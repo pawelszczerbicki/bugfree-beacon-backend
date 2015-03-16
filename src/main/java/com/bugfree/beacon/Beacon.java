@@ -4,12 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-/**
- * Created by pawel on 14.03.15.
- */
+@Document
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Beacon {
 
@@ -22,13 +21,9 @@ public class Beacon {
 
     private Integer minor;
 
-    private String imageUrl;
+    private String customer;
 
-    private String name;
-
-    private String pushText;
-
-    private String additionalDataUrl;
+    private BeaconData data;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -68,28 +63,20 @@ public class Beacon {
         this.minor = minor;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
-    public String getName() {
-        return name;
+    public BeaconData getData() {
+        return data;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPushText() {
-        return pushText;
-    }
-
-    public void setPushText(String pushText) {
-        this.pushText = pushText;
+    public void setData(BeaconData data) {
+        this.data = data;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -106,13 +93,5 @@ public class Beacon {
 
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
-    }
-
-    public String getAdditionalDataUrl() {
-        return additionalDataUrl;
-    }
-
-    public void setAdditionalDataUrl(String additionalDataUrl) {
-        this.additionalDataUrl = additionalDataUrl;
     }
 }

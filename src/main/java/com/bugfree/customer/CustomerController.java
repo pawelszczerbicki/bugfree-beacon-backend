@@ -1,26 +1,21 @@
-package com.bugfree;
+package com.bugfree.customer;
 
-import com.bugfree.beacon.Beacon;
-import com.bugfree.beacon.BeaconDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by pawel on 14.03.15.
- */
 @Controller
-@RequestMapping("/beacon")
-public class MainController {
+@RequestMapping("/customer")
+public class CustomerController {
 
     @Autowired
-    private BeaconDao beaconDao;
+    private CustomerDAO customerDAO;
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Beacon[] some(Beacon b) {
-        return new Beacon[]{beaconDao.get(b.getUuid(), b.getMinor(), b.getMajor())};
+    public Customer[] find(String id) {
+        return new Customer[] { customerDAO.get(id) };
     }
 }

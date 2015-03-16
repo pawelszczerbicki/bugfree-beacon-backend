@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
-/**
- * Created by pawel on 14.03.15.
- */
 @Repository
 public class BeaconDao extends GenericDao<Beacon> {
 

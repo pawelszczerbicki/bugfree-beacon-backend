@@ -8,9 +8,6 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
 
-/**
- * Created by Pawel on 2014-07-23.
- */
 public abstract class GenericDao<T> {
 
     @Autowired

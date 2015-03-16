@@ -1,18 +1,6 @@
 # Bugfree Beacon Backend
 
-A [Sails](http://sailsjs.org) application running as backend server storing informations about beacons, customers and users.
+You can run the app in dev mode by typing:
 
-API description is available [here](api/README.md).
-
-#Prerequisites
-    sudo npm -g install sails
-    npm install
-
-Local MongoDb instance (without login and password)
-
-#Fire project
-    sails lift
-
-#Deploy
-    git checkout master
-    git push origin master
+    mvn clean package
+    java -jar target/dependency/jetty-runner.jar --port 8080 target/*.war

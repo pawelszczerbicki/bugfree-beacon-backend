@@ -1,7 +1,10 @@
 package com.bugfree.beacon;
 
 import com.bugfree.generic.GenericDao;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -13,7 +16,15 @@ public class BeaconDao extends GenericDao<Beacon> {
         super(Beacon.class);
     }
 
-    public Beacon get(String uuid, Integer minor, Integer major) {
-        return mongo.findOne(query(where("uuid").is(uuid).and("minor").is(minor).and("major").is(major)), clazz);
+    public List<Beacon> findByUuidAndOthersIfNotNull(String uuid, Integer minor, Integer major) {
+        Criteria c = where("uuid").is(uuid);
+        addIfNotNull(c, minor, "minor");
+        addIfNotNull(c, major, "major");
+        return mongo.find(query(c), clazz);
+    }
+
+    private void addIfNotNull(Criteria c, Object param, String name) {
+        if (param != null)
+            c.and(name).is(param);
     }
 }

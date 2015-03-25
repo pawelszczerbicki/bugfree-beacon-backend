@@ -7,6 +7,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 public abstract class GenericDao<T> {
 
@@ -23,8 +26,8 @@ public abstract class GenericDao<T> {
         mongo.save(entity);
     }
 
-    public T findOne(String id) {
-        return mongo.findOne(Query.query(Criteria.where("id").is(id)), clazz);
+    public Optional<T> findOne(String id) {
+        return ofNullable(mongo.findOne(Query.query(Criteria.where("id").is(id)), clazz));
     }
 
     public List<T> find(Pageable pageable) {

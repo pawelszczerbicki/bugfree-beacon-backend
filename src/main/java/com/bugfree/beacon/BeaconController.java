@@ -1,5 +1,6 @@
 package com.bugfree.beacon;
 
+import com.bugfree.json.FailResponse;
 import com.bugfree.json.JsonResponse;
 import com.bugfree.json.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -24,6 +26,15 @@ public class BeaconController {
     @ResponseBody
     public List<Beacon> find(Beacon b) {
         return beaconDao.findByUuidAndOthersIfNotNull(b.getUuid(), b.getMinor(), b.getMajor());
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse get(String id) {
+        Optional<Beacon> beacon = beaconDao.findOne(id);
+        if (beacon.isPresent())
+            return SuccessResponse.create(beacon.get());
+        return FailResponse.create();
     }
 
     @RequestMapping(method = {POST, PUT})

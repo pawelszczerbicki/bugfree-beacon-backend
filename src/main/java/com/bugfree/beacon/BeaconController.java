@@ -30,6 +30,12 @@ public class BeaconController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
+    public List<Beacon> find(List<Beacon> b) {
+        return beaconDao.findByParametersList(b);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
     public JsonResponse get(String id) {
         Optional<Beacon> beacon = beaconDao.findOne(id);
         if (beacon.isPresent())

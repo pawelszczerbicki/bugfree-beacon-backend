@@ -28,9 +28,9 @@ public class BeaconController {
         return beaconDao.findByUuidAndOthersIfNotNull(b.getUuid(), b.getMinor(), b.getMajor());
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse get(String id) {
+    public JsonResponse get(@PathVariable String id) {
         Optional<Beacon> beacon = beaconDao.findOne(id);
         if (beacon.isPresent())
             return SuccessResponse.create(beacon.get());

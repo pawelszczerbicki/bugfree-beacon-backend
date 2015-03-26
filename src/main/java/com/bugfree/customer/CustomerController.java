@@ -16,6 +16,6 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public Customer[] find(String id) {
-        return new Customer[] { customerDao.findOne(id) };
+        return new Customer[] { customerDao.findOne(id).get() };
     }
 }

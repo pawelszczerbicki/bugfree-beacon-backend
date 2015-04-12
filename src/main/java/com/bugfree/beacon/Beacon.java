@@ -1,5 +1,6 @@
 package com.bugfree.beacon;
 
+import com.bugfree.template.Template;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -24,6 +25,8 @@ public class Beacon {
     private String customer;
 
     private BeaconData data;
+
+    private Template template;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -93,5 +96,13 @@ public class Beacon {
 
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

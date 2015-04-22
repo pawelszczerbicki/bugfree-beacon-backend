@@ -38,9 +38,16 @@ public class BeaconController {
         return FailResponse.create();
     }
 
-    @RequestMapping(method = {POST, PUT})
+    @RequestMapping(method = POST)
     @ResponseBody
     public JsonResponse save(Beacon b) {
+        beaconDao.save(b);
+        return SuccessResponse.create(b);
+    }
+
+    @RequestMapping(value = "/{id}", method = PUT)
+    @ResponseBody
+    public JsonResponse update(Beacon b) {
         beaconDao.save(b);
         return SuccessResponse.create(b);
     }

@@ -21,4 +21,7 @@
         <constructor-arg name="username" value="#{systemEnvironment['MONGO_USERNAME']}"/>
         <constructor-arg name="password" value="#{systemEnvironment['MONGO_PASSWORD']}"/>
     </bean>
+    <bean id="appProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="WEB-INF/properties/system.properties"/>
+    </bean>
 </beans>

@@ -24,7 +24,6 @@ public class BeaconDao extends GenericDao<Beacon> {
     }
 
     private void addIfNotNull(Criteria c, Object param, String name) {
-        if (param != null)
-            c.and(name).is(param);
+        if (param != null) c.and(name).is(param);
     }
 }

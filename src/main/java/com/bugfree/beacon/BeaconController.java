@@ -64,11 +64,4 @@ public class BeaconController {
             return FailResponse.create(UPLOAD_ERROR);
         else return SuccessResponse.create();
     }
-
-    @RequestMapping("")
-    @ResponseBody
-    public String testLogger(){
-        logger.error("test logger");
-        return "test";
-    }
 }

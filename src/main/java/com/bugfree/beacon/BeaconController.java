@@ -3,7 +3,6 @@ package com.bugfree.beacon;
 import com.bugfree.json.FailResponse;
 import com.bugfree.json.JsonResponse;
 import com.bugfree.json.SuccessResponse;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +13,13 @@ import java.util.Optional;
 
 import static com.bugfree.config.Keys.BEACON_NOT_PRESENT;
 import static com.bugfree.config.Keys.UPLOAD_ERROR;
-import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @Controller
 @RequestMapping("/beacon")
 public class BeaconController {
-    private static final Logger logger = getLogger(BeaconController.class);
+
     @Autowired
     private BeaconService service;
 

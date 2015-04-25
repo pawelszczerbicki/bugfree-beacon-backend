@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.InputStream;
 
 import static com.amazonaws.services.s3.model.CannedAccessControlList.PublicRead;
@@ -24,15 +23,11 @@ public class S3Service {
 
     private static final Logger logger = getLogger(S3Service.class);
 
+    @Autowired
     private AmazonS3Client s3;
 
     @Autowired
     private ConfigService config;
-
-    @PostConstruct
-    private void init() {
-        s3 = new AmazonS3Client();
-    }
 
     public void upload(InputStream s, String name, String bucket) throws AmazonClientException {
         if (config.propertyAsBoolean(S3_ENABLED))

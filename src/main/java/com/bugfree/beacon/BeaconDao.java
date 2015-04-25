@@ -16,7 +16,7 @@ public class BeaconDao extends GenericDao<Beacon> {
         super(Beacon.class);
     }
 
-    public List<Beacon> findByUuidAndOthersIfNotNull(String uuid, Integer minor, Integer major) {
+    public List<Beacon> find(String uuid, Integer minor, Integer major) {
         Criteria c = where("uuid").is(uuid);
         addIfNotNull(c, minor, "minor");
         addIfNotNull(c, major, "major");

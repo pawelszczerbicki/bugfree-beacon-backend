@@ -5,10 +5,7 @@ import com.bugfree.json.JsonResponse;
 import com.bugfree.json.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,14 +37,14 @@ public class BeaconController {
 
     @RequestMapping(method = POST)
     @ResponseBody
-    public JsonResponse save(Beacon b) {
+    public JsonResponse save(@RequestBody Beacon b) {
         beaconDao.save(b);
         return SuccessResponse.create(b);
     }
 
     @RequestMapping(value = "/{id}", method = PUT)
     @ResponseBody
-    public JsonResponse update(Beacon b) {
+    public JsonResponse update(@RequestBody Beacon b) {
         beaconDao.save(b);
         return SuccessResponse.create(b);
     }

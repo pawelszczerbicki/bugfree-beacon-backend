@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.bugfree.config.Keys.PHOTOS_BUCKET;
+import static java.lang.String.format;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -51,9 +52,13 @@ public class BeaconService {
             b.getData().setImageUrl(s3Service.getUrl(config.property(PHOTOS_BUCKET), b.getId()));
             dao.save(b);
         } catch (IOException | AmazonClientException e) {
-            logger.error("Can not add photo, beacon id: " + b.getId(), e);
+            logger.error(format("Can not add photo for beacon [%s] ", b.getId()), e);
             return false;
         }
         return true;
+    }
+
+    public void delete(String id) {
+        dao.delete(id);
     }
 }

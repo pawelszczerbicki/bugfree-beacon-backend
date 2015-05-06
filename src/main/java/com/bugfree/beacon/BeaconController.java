@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static com.bugfree.config.Keys.BEACON_NOT_PRESENT;
 import static com.bugfree.config.Keys.UPLOAD_ERROR;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
@@ -50,6 +51,13 @@ public class BeaconController {
     public JsonResponse update(@RequestBody Beacon b) {
         service.save(b);
         return SuccessResponse.create(b);
+    }
+
+    @RequestMapping(value = "/{id}", method = DELETE)
+    @ResponseBody
+    public JsonResponse delete(@PathVariable String id) {
+        service.delete(id);
+        return SuccessResponse.create();
     }
 
     @RequestMapping(value = "/{id}/photo", method = POST)

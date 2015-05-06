@@ -57,4 +57,8 @@ public class BeaconService {
         }
         return true;
     }
+
+    public void delete(String id) {
+        dao.delete(id);
+    }
 }

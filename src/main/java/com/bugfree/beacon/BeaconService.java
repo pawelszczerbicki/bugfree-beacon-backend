@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static com.bugfree.config.Keys.PHOTOS_BUCKET;
 import static java.lang.String.format;
+import static java.lang.System.currentTimeMillis;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -49,7 +50,7 @@ public class BeaconService {
     public boolean addPhoto(Beacon b, MultipartFile file) {
         try (InputStream is = file.getInputStream()) {
             s3Service.upload(is, b.getId(), config.property(PHOTOS_BUCKET));
-            b.getData().setImageUrl(s3Service.getUrl(config.property(PHOTOS_BUCKET), b.getId()));
+            b.getData().setImageUrl(s3Service.getUrl(config.property(PHOTOS_BUCKET), b.getId()) + "?time=" + currentTimeMillis());
             dao.save(b);
         } catch (IOException | AmazonClientException e) {
             logger.error(format("Can not add photo for beacon [%s] ", b.getId()), e);
@@ -59,6 +60,11 @@ public class BeaconService {
     }
 
     public void delete(String id) {
-        dao.delete(id);
+        try {
+            dao.delete(id);
+            s3Service.delete(config.property(PHOTOS_BUCKET), id);
+        } catch (AmazonClientException e) {
+            logger.error(format("Can not delete photo for beacon [%s] ", id), e);
+        }
     }
 }

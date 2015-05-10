@@ -39,4 +39,8 @@ public class S3Service {
     public String getUrl(String bucket, String name) {
         return s3.getResourceUrl(bucket, name);
     }
+
+    public void delete(String bucket, String name) throws AmazonClientException {
+        s3.deleteObject(bucket, name);
+    }
 }

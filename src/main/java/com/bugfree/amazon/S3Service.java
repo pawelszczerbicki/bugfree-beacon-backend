@@ -30,7 +30,7 @@ public class S3Service {
     private ConfigService config;
 
     public void upload(InputStream s, String name, String bucket) throws AmazonClientException {
-        if (config.propertyAsBoolean(S3_ENABLED))
+        if (config.asBoolean(S3_ENABLED))
             s3.putObject(new PutObjectRequest(bucket, name, s, new ObjectMetadata()).withCannedAcl(PublicRead));
         else
             logger.info("Amazon S3 is disabled on this environment. File with name [{}] will not be uploaded", name);

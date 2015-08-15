@@ -1,5 +1,6 @@
 package com.bugfree.beacon;
 
+import com.bugfree.beacon.domain.Beacon;
 import com.bugfree.json.FailResponse;
 import com.bugfree.json.JsonResponse;
 import com.bugfree.json.SuccessResponse;
@@ -41,14 +42,14 @@ public class BeaconController {
 
     @RequestMapping(method = POST)
     @ResponseBody
-    public JsonResponse save(@RequestBody Beacon b) {
+    public JsonResponse<Beacon> save(@RequestBody Beacon b) {
         service.save(b);
         return SuccessResponse.create(b);
     }
 
     @RequestMapping(value = "/{id}", method = PUT)
     @ResponseBody
-    public JsonResponse update(@RequestBody Beacon b) {
+    public JsonResponse<Beacon> update(@RequestBody Beacon b) {
         service.save(b);
         return SuccessResponse.create(b);
     }

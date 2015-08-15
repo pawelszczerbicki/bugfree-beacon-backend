@@ -2,6 +2,7 @@ package com.bugfree.beacon;
 
 import com.amazonaws.AmazonClientException;
 import com.bugfree.amazon.S3Service;
+import com.bugfree.beacon.domain.Beacon;
 import com.bugfree.config.ConfigService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

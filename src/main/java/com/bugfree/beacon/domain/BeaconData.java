@@ -1,4 +1,4 @@
-package com.bugfree.beacon;
+package com.bugfree.beacon.domain;
 
 public class BeaconData {
 

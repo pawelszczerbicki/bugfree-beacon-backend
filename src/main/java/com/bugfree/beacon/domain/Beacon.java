@@ -1,4 +1,4 @@
-package com.bugfree.beacon;
+package com.bugfree.beacon.domain;
 
 import com.bugfree.template.Template;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,6 +25,8 @@ public class Beacon {
     private String customer;
 
     private BeaconData data;
+
+    private BeaconState state;
 
     private Template template;
 
@@ -104,5 +106,9 @@ public class Beacon {
 
     public void setTemplate(Template template) {
         this.template = template;
+    }
+
+    public BeaconState getState() {
+        return state;
     }
 }

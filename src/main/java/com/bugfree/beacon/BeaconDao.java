@@ -1,5 +1,6 @@
 package com.bugfree.beacon;
 
+import com.bugfree.beacon.domain.Beacon;
 import com.bugfree.generic.GenericDao;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;

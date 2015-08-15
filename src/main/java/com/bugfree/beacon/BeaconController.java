@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @Controller
-@RequestMapping("/beacon")
+@RequestMapping("/beacons")
 public class BeaconController {
 
     @Autowired

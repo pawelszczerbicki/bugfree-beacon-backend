@@ -28,6 +28,8 @@ public class Beacon {
 
     private BeaconState state;
 
+    private BeaconStats stats;
+
     private Template template;
 
     @CreatedDate
@@ -110,5 +112,9 @@ public class Beacon {
 
     public BeaconState getState() {
         return state;
+    }
+
+    public BeaconStats getStats() {
+        return stats;
     }
 }

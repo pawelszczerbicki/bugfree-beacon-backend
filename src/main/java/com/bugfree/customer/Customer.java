@@ -14,6 +14,8 @@ public class Customer {
 
     private String name;
 
+    private String domain;
+
     private Application application;
 
     public String getId() {
@@ -38,5 +40,13 @@ public class Customer {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }

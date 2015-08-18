@@ -17,7 +17,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 /**
  * Created by pawel on 18.08.15.
  */
-@RestController("/application")
+@RestController
+@RequestMapping("/application")
 public class ApplicationController {
 
     @Autowired

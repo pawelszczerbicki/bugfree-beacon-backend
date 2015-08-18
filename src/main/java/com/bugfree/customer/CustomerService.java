@@ -21,11 +21,16 @@ public class CustomerService {
 
     public Optional<Application> save(Application a) {
         Optional<Customer> maybe = dao.getByDomain(provider.getDomain());
-       if(!maybe.isPresent())
-           return Optional.empty();
+        if (!maybe.isPresent())
+            return Optional.empty();
         Customer customer = maybe.get();
         customer.setApplication(a);
         dao.save(customer);
         return Optional.of(customer.getApplication());
+    }
+
+    public Optional<Application> getApplication() {
+        Optional<Customer> maybe = dao.getByDomain(provider.getDomain());
+        return maybe.isPresent() ? Optional.of(maybe.get().getApplication()) : Optional.empty();
     }
 }

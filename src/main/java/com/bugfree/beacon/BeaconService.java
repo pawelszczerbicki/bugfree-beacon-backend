@@ -25,7 +25,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Service
 public class BeaconService {
 
-    private static final Logger logger = getLogger(S3Service.class);
+    private final Logger logger = getLogger(getClass());
 
     @Autowired
     private S3Service s3Service;

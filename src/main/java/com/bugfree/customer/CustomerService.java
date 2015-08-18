@@ -31,6 +31,6 @@ public class CustomerService {
 
     public Optional<Application> getApplication() {
         Optional<Customer> maybe = dao.getByDomain(provider.getDomain());
-        return maybe.isPresent() ? Optional.of(maybe.get().getApplication()) : Optional.empty();
+        return maybe.isPresent() ? Optional.ofNullable(maybe.get().getApplication()) : Optional.empty();
     }
 }

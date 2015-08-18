@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Repository
@@ -18,7 +17,8 @@ public class BeaconDao extends GenericDao<Beacon> {
     }
 
     public List<Beacon> find(String uuid, Integer minor, Integer major) {
-        Criteria c = where("uuid").is(uuid);
+        Criteria c = new Criteria();
+        addIfNotNull(c, uuid, "uuid");
         addIfNotNull(c, minor, "minor");
         addIfNotNull(c, major, "major");
         return mongo.find(query(c), clazz);

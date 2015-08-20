@@ -21,7 +21,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setObjectMapper(new ScalaObjectMapper());
         converters.add(converter);
-//        addDefaultHttpMessageConverters(converters);
     }
 
     @Override

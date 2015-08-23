@@ -25,6 +25,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("/**")
+                .allowedMethods("GET", "POST", "PUT", "HEAD", "DELETE")
+                .allowedOrigins("http://bejkon.herokuapp.com", "http://beaconic.herokuapp.com");
     }
 }

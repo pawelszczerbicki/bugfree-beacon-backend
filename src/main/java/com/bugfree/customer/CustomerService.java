@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static java.util.Optional.empty;
+import static java.util.Optional.ofNullable;
+
 /**
  * Created by pawel on 18.08.15.
  */
@@ -19,22 +22,17 @@ public class CustomerService {
     @Autowired
     private CustomerDao dao;
 
+    public Optional<Customer> get() {
+        return dao.getByDomain(provider.getDomain());
+    }
+
     public Optional<Application> save(Application a) {
-        Optional<Customer> maybe = dao.getByDomain(provider.getDomain());
-        if (!maybe.isPresent())
-            return Optional.empty();
-        Customer customer = maybe.get();
-        customer.setApplication(a);
-        dao.save(customer);
-        return Optional.of(customer.getApplication());
+        Optional<Customer> maybe = get();
+        return maybe.isPresent() ? ofNullable(dao.save(maybe.get().withApplication(a)).getApplication()) : empty();
     }
 
-    public Optional<Application> getApplication() {
-        Optional<Customer> maybe = dao.getByDomain(provider.getDomain());
-        return maybe.isPresent() ? Optional.ofNullable(maybe.get().getApplication()) : Optional.empty();
-    }
-
-    public Optional<Customer> find(String id) {
-        return dao.findOne(id);
+    public Optional<InvoiceData> updateInvoice(InvoiceData d) {
+        Optional<Customer> maybe = get();
+        return maybe.isPresent() ? ofNullable(dao.save(maybe.get().withInvoiceData(d)).getInvoiceData()) : empty();
     }
 }

@@ -4,6 +4,7 @@ import com.bugfree.beacon.domain.Beacon;
 import com.bugfree.json.FailResponse;
 import com.bugfree.json.JsonResponse;
 import com.bugfree.json.SuccessResponse;
+import com.bugfree.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,24 +35,13 @@ public class BeaconController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public JsonResponse get(@PathVariable String id) {
-        Optional<Beacon> beacon = service.findOne(id);
-        if (beacon.isPresent())
-            return SuccessResponse.create(beacon.get());
-        return FailResponse.create();
+        return SuccessResponse.create(service.findOne(id).orElseThrow(ResourceNotFoundException::new));
     }
 
-    @RequestMapping(method = POST)
+    @RequestMapping(value = {"/", "/{id}"}, method = {POST, PUT})
     @ResponseBody
-    public JsonResponse<Beacon> save(@RequestBody Beacon b) {
-        service.save(b);
-        return SuccessResponse.create(b);
-    }
-
-    @RequestMapping(value = "/{id}", method = PUT)
-    @ResponseBody
-    public JsonResponse<Beacon> update(@RequestBody Beacon b) {
-        service.save(b);
-        return SuccessResponse.create(b);
+    public JsonResponse<Beacon> saveOrUpdate(@RequestBody Beacon b) {
+        return SuccessResponse.create(service.save(b));
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)

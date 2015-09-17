@@ -18,6 +18,8 @@ public class Customer {
 
     private Application application;
 
+    private InvoiceData invoiceData;
+
     public String getId() {
         return id;
     }
@@ -42,11 +44,29 @@ public class Customer {
         this.application = application;
     }
 
+    public Customer withApplication(Application application) {
+        setApplication(application);
+        return this;
+    }
+
     public String getDomain() {
         return domain;
     }
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public InvoiceData getInvoiceData() {
+        return invoiceData;
+    }
+
+    public void setInvoiceData(InvoiceData invoiceData) {
+        this.invoiceData = invoiceData;
+    }
+
+    public Customer withInvoiceData(InvoiceData invoiceData) {
+        setInvoiceData(invoiceData);
+        return this;
     }
 }

@@ -44,8 +44,8 @@ public class BeaconService {
         return dao.findOne(id);
     }
 
-    public void save(Beacon b) {
-        dao.save(b);
+    public Beacon save(Beacon b) {
+       return dao.save(b);
     }
 
     public boolean addPhoto(Beacon b, MultipartFile file) {

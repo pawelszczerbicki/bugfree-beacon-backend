@@ -23,8 +23,9 @@ public abstract class GenericDao<T> {
         this.clazz = clazz;
     }
 
-    public void save(T entity) {
+    public T save(T entity) {
         mongo.save(entity);
+        return entity;
     }
 
     public Optional<T> findOne(String id) {

@@ -1,7 +1,7 @@
 package com.bugfree.web.stats;
 
 import com.bugfree.analytics.DatePart;
-import com.bugfree.web.beacon.domain.ActionType;
+import com.bugfree.web.action.ActionType;
 
 import java.time.LocalDate;
 

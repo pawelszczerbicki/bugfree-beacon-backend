@@ -28,6 +28,11 @@ public abstract class GenericDao<T> {
         return entity;
     }
 
+    public List<T> saveAll(List<T> entities) {
+        mongo.insert(entities, clazz);
+        return entities;
+    }
+
     public Optional<T> findOne(String id) {
         return ofNullable(mongo.findOne(query(where("id").is(id)), clazz));
     }

@@ -15,9 +15,7 @@ import java.util.Optional;
 
 import static com.bugfree.commons.config.Keys.BEACON_NOT_PRESENT;
 import static com.bugfree.commons.config.Keys.UPLOAD_ERROR;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 @RequestMapping("/beacons")
@@ -38,7 +36,7 @@ public class BeaconController {
         return SuccessResponse.create(service.findOne(id).orElseThrow(ResourceNotFoundException::new));
     }
 
-    @RequestMapping(value = {"/", "/{id}"}, method = {POST, PUT})
+    @RequestMapping(value = {"", "/{id}"}, method = {POST, PUT})
     @ResponseBody
     public JsonResponse<Beacon> saveOrUpdate(@RequestBody Beacon b) {
         return SuccessResponse.create(service.save(b));
@@ -55,10 +53,8 @@ public class BeaconController {
     @ResponseBody
     public JsonResponse addPhoto(@PathVariable String id, MultipartFile file) {
         Optional<Beacon> b = service.findOne(id);
-        if (!b.isPresent())
-            return FailResponse.create(BEACON_NOT_PRESENT);
-        else if (!service.addPhoto(b.get(), file))
-            return FailResponse.create(UPLOAD_ERROR);
+        if (!b.isPresent()) return FailResponse.create(BEACON_NOT_PRESENT);
+        else if (!service.addPhoto(b.get(), file)) return FailResponse.create(UPLOAD_ERROR);
         else return SuccessResponse.create();
     }
 }

@@ -1,22 +1,19 @@
 package com.bugfree.web.beacon;
 
 import com.amazonaws.AmazonClientException;
+import com.bugfree.commons.config.ConfigService;
 import com.bugfree.web.amazon.S3Service;
 import com.bugfree.web.beacon.domain.Beacon;
-import com.bugfree.commons.config.ConfigService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 import static com.bugfree.commons.config.Keys.PHOTOS_BUCKET;
 import static java.lang.String.format;
-import static java.lang.System.currentTimeMillis;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -45,19 +42,12 @@ public class BeaconService {
     }
 
     public Beacon save(Beacon b) {
-       return dao.save(b);
+        return dao.save(b);
     }
 
-    public boolean addPhoto(Beacon b, MultipartFile file) {
-        try (InputStream is = file.getInputStream()) {
-            s3Service.upload(is, b.getId(), config.property(PHOTOS_BUCKET));
-            b.getData().setImageUrl(s3Service.getUrl(config.property(PHOTOS_BUCKET), b.getId()) + "?time=" + currentTimeMillis());
-            dao.save(b);
-        } catch (IOException | AmazonClientException e) {
-            logger.error(format("Can not add photo for beacon [%s] ", b.getId()), e);
-            return false;
-        }
-        return true;
+    public Beacon addPhoto(Beacon b, MultipartFile file) {
+        b.getData().setImageUrl(s3Service.upload(file, b.getId(), config.property(PHOTOS_BUCKET)));
+        return dao.save(b);
     }
 
     public void delete(String id) {

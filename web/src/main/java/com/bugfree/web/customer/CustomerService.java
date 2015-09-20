@@ -5,10 +5,7 @@ import com.bugfree.web.utils.DomainProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-import static java.util.Optional.empty;
-import static java.util.Optional.ofNullable;
+import static java.lang.String.format;
 
 /**
  * Created by pawel on 18.08.15.
@@ -22,17 +19,15 @@ public class CustomerService {
     @Autowired
     private CustomerDao dao;
 
-    public Optional<Customer> get() {
-        return dao.getByDomain(provider.getDomain());
+    public Customer get() {
+        return dao.getByDomain(provider.getDomain()).orElseThrow(() -> new IllegalArgumentException(format("Customer with domain [%s] does not exist", provider.getDomain())));
     }
 
-    public Optional<Application> save(Application a) {
-        Optional<Customer> maybe = get();
-        return maybe.isPresent() ? ofNullable(dao.save(maybe.get().withApplication(a)).getApplication()) : empty();
+    public Application save(Application a) {
+        return dao.save(get().withApplication(a)).getApplication();
     }
 
-    public Optional<InvoiceData> updateInvoice(InvoiceData d) {
-        Optional<Customer> maybe = get();
-        return maybe.isPresent() ? ofNullable(dao.save(maybe.get().withInvoiceData(d)).getInvoiceData()) : empty();
+    public InvoiceData updateInvoice(InvoiceData d) {
+        return dao.save(get().withInvoiceData(d)).getInvoiceData();
     }
 }

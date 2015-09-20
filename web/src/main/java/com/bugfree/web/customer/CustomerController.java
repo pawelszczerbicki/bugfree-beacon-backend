@@ -2,7 +2,6 @@ package com.bugfree.web.customer;
 
 import com.bugfree.web.json.JsonResponse;
 import com.bugfree.web.json.SuccessResponse;
-import com.bugfree.web.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,17 +17,17 @@ public class CustomerController {
 
     @RequestMapping(method = GET)
     public JsonResponse<Customer> find() {
-        return SuccessResponse.create(service.get().orElseThrow(ResourceNotFoundException::new));
+        return SuccessResponse.create(service.get());
     }
 
     @RequestMapping(value = "/invoice-data", method = GET)
     public JsonResponse<InvoiceData> invoice() {
-        return SuccessResponse.create(service.get().orElseThrow(ResourceNotFoundException::new).getInvoiceData());
+        return SuccessResponse.create(service.get().getInvoiceData());
     }
 
     @RequestMapping(value = "/invoice-data", method = {POST, PUT})
     public JsonResponse<InvoiceData> updateInvoice(InvoiceData data) {
-        return SuccessResponse.create(service.updateInvoice(data).orElseThrow(ResourceNotFoundException::new));
+        return SuccessResponse.create(service.updateInvoice(data));
     }
 
 }

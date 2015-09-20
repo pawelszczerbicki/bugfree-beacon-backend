@@ -16,9 +16,9 @@ public class Customer {
 
     private String domain;
 
-    private Application application;
+    private Application application = new Application();
 
-    private InvoiceData invoiceData;
+    private InvoiceData invoiceData = new InvoiceData();
 
     public String getId() {
         return id;

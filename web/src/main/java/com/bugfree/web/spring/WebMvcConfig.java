@@ -1,6 +1,5 @@
 package com.bugfree.web.spring;
 
-import com.knappsack.swagger4springweb.util.ScalaObjectMapper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -18,8 +17,9 @@ import java.util.List;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        //TODO temporary disabled mapper, add after new swagger version
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setObjectMapper(new ScalaObjectMapper());
+//        converter.setObjectMapper(new ScalaObjectMapper());
         converters.add(converter);
     }
 

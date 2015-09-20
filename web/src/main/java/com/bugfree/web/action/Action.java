@@ -1,5 +1,7 @@
-package com.bugfree.web.beacon.domain;
+package com.bugfree.web.action;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,16 +11,21 @@ import java.time.LocalDateTime;
  * Created by pawel on 15.08.15.
  */
 @Document
-public class BeaconAction {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Action {
 
     @Id
     private String id;
 
     private String beaconId;
 
-    private String userId;
+    private String deviceId;
 
-    private LocalDateTime date;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime dateFrom;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime dateTo;
 
     private ActionType type;
 
@@ -42,20 +49,28 @@ public class BeaconAction {
         this.beaconId = beaconId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getDeviceId() {
+        return deviceId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDateFrom() {
+        return dateFrom;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDateFrom(LocalDateTime dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public LocalDateTime getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(LocalDateTime dateTo) {
+        this.dateTo = dateTo;
     }
 
     public ActionType getType() {

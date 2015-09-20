@@ -39,6 +39,6 @@ public class ErrorHandler {
         String code = randomAlphabetic(10);
         logger.error(format("Error 500, code [%s]", code), ex);
         response.addHeader(ERROR_ID_HEADER, code);
-        return FailResponse.create(format(INTERNAL_SERVER_ERROR, code));
+        return FailResponse.create(format(INTERNAL_SERVER_ERROR, code, ex.getMessage()));
     }
 }

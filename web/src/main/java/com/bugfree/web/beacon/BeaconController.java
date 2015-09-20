@@ -1,7 +1,6 @@
 package com.bugfree.web.beacon;
 
 import com.bugfree.web.beacon.domain.Beacon;
-import com.bugfree.web.json.FailResponse;
 import com.bugfree.web.json.JsonResponse;
 import com.bugfree.web.json.SuccessResponse;
 import com.bugfree.web.utils.ResourceNotFoundException;
@@ -13,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-import static com.bugfree.commons.config.Keys.BEACON_NOT_PRESENT;
-import static com.bugfree.commons.config.Keys.UPLOAD_ERROR;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
@@ -53,8 +50,7 @@ public class BeaconController {
     @ResponseBody
     public JsonResponse addPhoto(@PathVariable String id, MultipartFile file) {
         Optional<Beacon> b = service.findOne(id);
-        if (!b.isPresent()) return FailResponse.create(BEACON_NOT_PRESENT);
-        else if (!service.addPhoto(b.get(), file)) return FailResponse.create(UPLOAD_ERROR);
-        else return SuccessResponse.create();
+        if (!b.isPresent()) throw new ResourceNotFoundException();
+        return SuccessResponse.create(service.addPhoto(b.get(), file));
     }
 }

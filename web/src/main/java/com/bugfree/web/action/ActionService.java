@@ -17,8 +17,8 @@ public class ActionService {
     private ActionDao dao;
 
     public List<Action> save(List<Action> a) {
-        a.stream().filter(e -> e.getFinishDate() != null && e.getStartDate() != null)
-                .forEach(e->e.setDurationInSeconds(between(e.getStartDate(), e.getFinishDate()).getSeconds()));
+        a.stream().filter(e ->  e.getDateFrom() != null && e.getDateTo() != null)
+                .forEach(e->e.setDurationInSeconds(between(e.getDateFrom(), e.getDateTo()).getSeconds()));
         return dao.saveAll(a);
     }
 }

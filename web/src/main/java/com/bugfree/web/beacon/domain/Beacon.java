@@ -111,8 +111,4 @@ public class Beacon {
     public BeaconState getState() {
         return state;
     }
-
-    public void setState(BeaconState state) {
-        this.state = state;
-    }
 }

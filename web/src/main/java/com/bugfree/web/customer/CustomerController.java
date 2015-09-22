@@ -3,6 +3,7 @@ package com.bugfree.web.customer;
 import com.bugfree.web.json.JsonResponse;
 import com.bugfree.web.json.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/invoice-data", method = {POST, PUT})
-    public JsonResponse<InvoiceData> updateInvoice(InvoiceData data) {
+    public JsonResponse<InvoiceData> updateInvoice(@RequestBody InvoiceData data) {
         return SuccessResponse.create(service.updateInvoice(data));
     }
 

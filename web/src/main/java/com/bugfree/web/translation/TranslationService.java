@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by pawel on 21.09.15.
  */
@@ -25,5 +27,9 @@ public class TranslationService {
 
     public List<Translation> getAll() {
         return dao.findByDomain(provider.getDomain());
+    }
+
+    public List<String> getAllLanguages() {
+        return dao.findLangByDomain(provider.getDomain()).stream().map(Translation::getLanguageCode).collect(toList());
     }
 }

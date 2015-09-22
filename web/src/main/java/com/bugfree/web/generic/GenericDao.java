@@ -3,6 +3,7 @@ package com.bugfree.web.generic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public abstract class GenericDao<T> {
     public List<T> saveAll(List<T> entities) {
         mongo.insert(entities, clazz);
         return entities;
+    }
+
+    public List<T> findByDomain(String domain) {
+        return mongo.find(Query.query(Criteria.where("domain").is(domain)), clazz);
     }
 
     public Optional<T> findOne(String id) {

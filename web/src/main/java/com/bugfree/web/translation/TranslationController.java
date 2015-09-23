@@ -28,6 +28,11 @@ public class TranslationController {
         return SuccessResponse.create(service.getAll());
     }
 
+    @RequestMapping(value = "/languages", method = GET)
+    public JsonResponse<List<String>> languages() {
+        return SuccessResponse.create(service.getAllLanguages());
+    }
+
     @RequestMapping(method = {PUT, POST})
     public JsonResponse<Translation> saveOrUpdate(@RequestBody Translation t) {
         return SuccessResponse.create(service.save(t));

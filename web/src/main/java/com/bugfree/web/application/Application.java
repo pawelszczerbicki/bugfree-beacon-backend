@@ -56,6 +56,10 @@ public class Application {
         return appearance;
     }
 
+    public Shape getPhotoShape() {
+        return photoShape;
+    }
+
     public void setAppearance(Appearance appearance) {
         this.appearance = appearance;
     }

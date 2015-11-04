@@ -1,5 +1,7 @@
 package com.bugfree.web.auth;
 
+import com.bugfree.commons.config.ConfigService;
+import com.bugfree.commons.config.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,11 +27,14 @@ public class StatelessSocialConfig extends SocialConfigurerAdapter {
 	@Autowired
 	private SocialUserService userService;
 
+	@Autowired
+	private ConfigService conf;
+
 	@Override
 	public void addConnectionFactories(ConnectionFactoryConfigurer cfConfig, Environment env) {
 		cfConfig.addConnectionFactory(new FacebookConnectionFactory(
-				env.getProperty("facebook.appKey"),
-				env.getProperty("facebook.appSecret")));
+				conf.property(Keys.FACEBOOK_APP_ID),
+				conf.property(Keys.FACEBOOK_APP_SECRET)));
 	}
 
 	@Override

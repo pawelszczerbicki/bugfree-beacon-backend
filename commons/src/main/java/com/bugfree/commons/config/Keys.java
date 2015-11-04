@@ -12,6 +12,8 @@ public class Keys {
     public static final String MONGO_DATABASE = "MONGO_DATABASE";
     public static final String MONGO_USERNAME = "MONGO_USERNAME";
     public static final String MONGO_PASSWORD = "MONGO_PASSWORD";
+    public static final String FACEBOOK_APP_ID = "FACEBOOK_APP_ID";
+    public static final String FACEBOOK_APP_SECRET = "FACEBOOK_APP_SECRET";
 
     public static final String BEACON_NOT_PRESENT = "Beacon with requested id is not present";
     public static final String UPLOAD_ERROR = "Error occurred during photo upload";

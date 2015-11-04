@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 import static com.bugfree.commons.config.Keys.LOGO_BUCKET;
 
 /**
@@ -25,6 +27,9 @@ public class ApplicationService {
 
     @Autowired
     private S3Service s3Service;
+
+    @Autowired
+    private ColorSchemeDao colorSchemeDao;
 
     @Autowired
     private ConfigService config;
@@ -50,4 +55,11 @@ public class ApplicationService {
         return customerDao.save(c).getApplication();
     }
 
+    public List<ColorScheme> getColorSchemes() {
+        return colorSchemeDao.findAll();
+    }
+
+    public void save(ColorScheme scheme){
+        colorSchemeDao.save(scheme);
+    }
 }

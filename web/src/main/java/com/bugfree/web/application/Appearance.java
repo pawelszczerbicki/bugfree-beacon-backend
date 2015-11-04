@@ -5,63 +5,23 @@ package com.bugfree.web.application;
  */
 public class Appearance {
 
-    private String photoBackgroundColor;
+    private String colorSchemeId;
 
-    private String descriptionBackgroundColor;
+    private String font;
 
-    private String titleColor;
-
-    private String textColor;
-
-    private Shape photoShape;
-
-    private boolean withUrlButton = true;
-
-    public String getPhotoBackgroundColor() {
-        return photoBackgroundColor;
+    public String getColorSchemeId() {
+        return colorSchemeId;
     }
 
-    public void setPhotoBackgroundColor(String photoBackgroundColor) {
-        this.photoBackgroundColor = photoBackgroundColor;
+    public void setColorSchemeId(String colorSchemeId) {
+        this.colorSchemeId = colorSchemeId;
     }
 
-    public String getDescriptionBackgroundColor() {
-        return descriptionBackgroundColor;
+    public String getFont() {
+        return font;
     }
 
-    public void setDescriptionBackgroundColor(String descriptionBackgroundColor) {
-        this.descriptionBackgroundColor = descriptionBackgroundColor;
-    }
-
-    public String getTitleColor() {
-        return titleColor;
-    }
-
-    public void setTitleColor(String titleColor) {
-        this.titleColor = titleColor;
-    }
-
-    public String getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(String textColor) {
-        this.textColor = textColor;
-    }
-
-    public Shape getPhotoShape() {
-        return photoShape;
-    }
-
-    public void setPhotoShape(Shape photoShape) {
-        this.photoShape = photoShape;
-    }
-
-    public boolean isWithUrlButton() {
-        return withUrlButton;
-    }
-
-    public void setWithUrlButton(boolean withUrlButton) {
-        this.withUrlButton = withUrlButton;
+    public void setFont(String font) {
+        this.font = font;
     }
 }

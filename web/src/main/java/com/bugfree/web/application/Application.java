@@ -16,6 +16,8 @@ public class Application {
 
     private ArrangeType arrange;
 
+    private Shape photoShape;
+
     private Appearance appearance = new Appearance();
 
     public String getSplashScreenTitle() {
@@ -59,13 +61,11 @@ public class Application {
     }
 
     public Application withShape(Shape s) {
-        appearance.setPhotoShape(s);
+        this.photoShape = s;
         return this;
     }
 
     public Application withAppearance(Appearance a) {
-        if (a.getPhotoShape() == null)
-            a.setPhotoShape(appearance.getPhotoShape());
         setAppearance(a);
         return this;
     }

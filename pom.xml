@@ -10,7 +10,7 @@
         <module>web</module>
         <module>analytics</module>
     </modules>
-    <name>bejkon</name>
+    <name>Bejkon</name>
 
     <properties>
         <spring.version>4.2.0.RELEASE</spring.version>

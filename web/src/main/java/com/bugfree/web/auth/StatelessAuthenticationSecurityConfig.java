@@ -72,7 +72,6 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
 
 				// add custom authentication filter for complete stateless JWT based authentication
 				.addFilterBefore(statelessAuthenticationFilter, AbstractPreAuthenticatedProcessingFilter.class)
-
 				// apply the configuration from the socialConfigurer (adds the SocialAuthenticationFilter)
 				.apply(socialConfigurer.userIdSource(userIdSource));
 	}

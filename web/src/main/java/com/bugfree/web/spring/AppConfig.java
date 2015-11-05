@@ -13,7 +13,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * Created by pawel on 11.08.15.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.bugfree", "org.springframework.social.connect.web"})
+@ComponentScan(basePackages = {"com.bugfree"})
 @Import(Config.class)
 public class AppConfig {
 

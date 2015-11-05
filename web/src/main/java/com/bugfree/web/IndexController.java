@@ -10,13 +10,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 /**
  * Created by pawel on 11.08.15.
  */
-@RestController("/")
+@RestController
 public class IndexController {
 
     @Autowired
     private DomainProvider provider;
 
-    @RequestMapping(method = GET)
+    @RequestMapping(value = "/", method = GET)
     public String index(){
         return provider.getDomain();
     }

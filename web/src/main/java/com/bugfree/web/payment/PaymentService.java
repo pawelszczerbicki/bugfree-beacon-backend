@@ -21,4 +21,10 @@ public class PaymentService {
     public List<Payment> getAll() {
         return dao.findByDomain(provider.getDomain());
     }
+
+    //TODO remove. Only for dev purposes
+    public Payment save(Payment p) {
+        p.setDomain(provider.getDomain());
+        return dao.save(p);
+    }
 }

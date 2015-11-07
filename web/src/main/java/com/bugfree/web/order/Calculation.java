@@ -1,5 +1,9 @@
 package com.bugfree.web.order;
 
+import java.util.Currency;
+
+import static java.util.Locale.US;
+
 /**
  * Created by pawel on 07.11.15.
  */
@@ -12,6 +16,8 @@ public class Calculation {
     private Double priceWithTax;
 
     private Double shippingPrice;
+
+    private String currency = Currency.getInstance(US).getSymbol();
 
     public Integer getAmount() {
         return amount;
@@ -51,5 +57,9 @@ public class Calculation {
     public Calculation withShippingPrice(Double shippingPrice) {
         this.shippingPrice = shippingPrice;
         return this;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 }

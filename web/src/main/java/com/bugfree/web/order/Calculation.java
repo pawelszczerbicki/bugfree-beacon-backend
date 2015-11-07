@@ -11,6 +11,8 @@ public class Calculation {
 
     private Double priceWithTax;
 
+    private Double shippingPrice;
+
     public Integer getAmount() {
         return amount;
     }
@@ -32,13 +34,22 @@ public class Calculation {
         return this;
     }
 
-    public Calculation calculateTax(Double tax){
-        if(amount != null)
-            priceWithTax = price * tax;
+    public Calculation calculateTax(Double tax) {
+        if (amount != null)
+            priceWithTax = price + price * tax;
         return this;
     }
 
     public Double getPriceWithTax() {
         return priceWithTax;
+    }
+
+    public Double getShippingPrice() {
+        return shippingPrice;
+    }
+
+    public Calculation withShippingPrice(Double shippingPrice) {
+        this.shippingPrice = shippingPrice;
+        return this;
     }
 }

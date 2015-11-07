@@ -19,7 +19,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping("/orders")
 public class OrderController {
 
-    public static final double TAX = 0.22d;
+    public static final double POLISH_TAX = 0.22d;
+    public static final double SHIPPING_PRICE = 30;
 
     @Autowired
     private OrderService service;
@@ -31,7 +32,7 @@ public class OrderController {
 
     @RequestMapping(value = "/calculate", method = GET)
     public JsonResponse<Calculation> calculate(Calculation c) {
-        return SuccessResponse.create(c.withPrice(c.getAmount() * 101.33d).calculateTax(TAX));
+        return SuccessResponse.create(c.withPrice(c.getAmount() * 101.33d).calculateTax(POLISH_TAX).withShippingPrice(SHIPPING_PRICE));
     }
 
     @RequestMapping(method = {PUT, POST})

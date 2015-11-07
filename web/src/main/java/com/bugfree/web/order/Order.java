@@ -20,6 +20,8 @@ public class Order {
 
     private Address address;
 
+    private Currency currency = new Currency();
+
     public String getId() {
         return id;
     }
@@ -58,5 +60,9 @@ public class Order {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 }

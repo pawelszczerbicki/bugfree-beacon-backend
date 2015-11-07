@@ -17,7 +17,11 @@ public class Calculation {
 
     private Double shippingPrice;
 
-    private String currency = Currency.getInstance(US).getSymbol();
+    private String currencySymbol = Currency.getInstance(US).getSymbol();
+
+    private String currencyCode = Currency.getInstance(US).getCurrencyCode();
+
+    private String currencyName = Currency.getInstance(US).getDisplayName();
 
     public Integer getAmount() {
         return amount;
@@ -59,7 +63,15 @@ public class Calculation {
         return this;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public String getCurrencyName() {
+        return currencyName;
     }
 }

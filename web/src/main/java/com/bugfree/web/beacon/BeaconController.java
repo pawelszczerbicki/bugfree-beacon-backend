@@ -23,8 +23,8 @@ public class BeaconController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Beacon> find(Beacon b) {
-        return service.find(b.getUuid(), b.getMinor(), b.getMajor());
+    public JsonResponse<List<Beacon>> find(Beacon b) {
+        return SuccessResponse.create(service.find(b.getUuid(), b.getMinor(), b.getMajor()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

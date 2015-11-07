@@ -16,9 +16,16 @@ public class Customer {
 
     private String domain;
 
-    private Application application = new Application();
+    private Address address;
 
-    private InvoiceData invoiceData = new InvoiceData();
+    private Application application;
+
+    private InvoiceData invoiceData;
+
+    public Customer() {
+        application = new Application();
+        invoiceData = new InvoiceData();
+    }
 
     public String getId() {
         return id;
@@ -63,6 +70,14 @@ public class Customer {
 
     public void setInvoiceData(InvoiceData invoiceData) {
         this.invoiceData = invoiceData;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Customer withInvoiceData(InvoiceData invoiceData) {

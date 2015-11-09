@@ -14,7 +14,8 @@
 
     <properties>
         <spring.version>4.2.0.RELEASE</spring.version>
-        <spring.security.version>3.2.5.RELEASE</spring.security.version>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
+        <spring.social.version>1.1.2.RELEASE</spring.social.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencyManagement>
@@ -42,7 +43,17 @@
             <dependency>
                 <groupId>org.springframework.social</groupId>
                 <artifactId>spring-social-config</artifactId>
-                <version>1.1.2.RELEASE</version>
+                <version>${spring.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.social</groupId>
+                <artifactId>spring-social-security</artifactId>
+                <version>${spring.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.social</groupId>
+                <artifactId>spring-social-web</artifactId>
+                <version>${spring.social.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.social</groupId>
@@ -51,13 +62,18 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-security</artifactId>
-                <version>1.1.2.RELEASE</version>
+                <artifactId>spring-social-twitter</artifactId>
+                <version>1.1.0.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.social</groupId>
-                <artifactId>spring-social-web</artifactId>
-                <version>1.1.2.RELEASE</version>
+                <artifactId>spring-social-linkedin</artifactId>
+                <version>1.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.social</groupId>
+                <artifactId>spring-social-google</artifactId>
+                <version>1.0.0.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>

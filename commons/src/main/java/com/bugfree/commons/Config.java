@@ -33,8 +33,8 @@ public class Config {
 
     @Bean
     public MongoTemplate mongoTemplate() throws UnknownHostException {
-        MongoCredential credential = createCredential(config.property(MONGO_USERNAME), config.property(MONGO_DATABASE), config.property(MONGO_PASSWORD).toCharArray());
-        MongoClient c = new MongoClient(new ServerAddress(config.property(MONGO_HOST), config.asInteger(MONGO_PORT)), singletonList(credential));
-        return new MongoTemplate(new SimpleMongoDbFactory(c, config.property(MONGO_DATABASE)));
+        MongoCredential credential = createCredential(config.get(MONGO_USERNAME), config.get(MONGO_DATABASE), config.get(MONGO_PASSWORD).toCharArray());
+        MongoClient c = new MongoClient(new ServerAddress(config.get(MONGO_HOST), config.asInteger(MONGO_PORT)), singletonList(credential));
+        return new MongoTemplate(new SimpleMongoDbFactory(c, config.get(MONGO_DATABASE)));
     }
 }

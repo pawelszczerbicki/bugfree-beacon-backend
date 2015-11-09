@@ -51,7 +51,7 @@ public class ApplicationService {
 
     public Application addLogo(MultipartFile file) {
         Customer c = service.get();
-        c.getApplication().setLogoUrl(s3Service.upload(file, c.getId(), config.property(LOGO_BUCKET)));
+        c.getApplication().setLogoUrl(s3Service.upload(file, c.getId(), config.get(LOGO_BUCKET)));
         return customerDao.save(c).getApplication();
     }
 

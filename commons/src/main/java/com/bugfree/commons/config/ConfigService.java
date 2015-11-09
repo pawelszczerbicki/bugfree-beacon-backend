@@ -17,15 +17,15 @@ public class ConfigService {
     @Autowired
     private Environment env;
 
-    public String property(String key) {
+    public String get(String key) {
         return getenv(key) == null ? env.getProperty(key) : getenv(key);
     }
 
     public Boolean asBoolean(String key){
-        return parseBoolean(property(key));
+        return parseBoolean(get(key));
     }
 
     public Integer asInteger(String key){
-        return parseInt(property(key));
+        return parseInt(get(key));
     }
 }

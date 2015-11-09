@@ -46,14 +46,14 @@ public class BeaconService {
     }
 
     public Beacon addPhoto(Beacon b, MultipartFile file) {
-        b.getData().setImageUrl(s3Service.upload(file, b.getId(), config.property(PHOTOS_BUCKET)));
+        b.getData().setImageUrl(s3Service.upload(file, b.getId(), config.get(PHOTOS_BUCKET)));
         return dao.save(b);
     }
 
     public void delete(String id) {
         try {
             dao.delete(id);
-            s3Service.delete(config.property(PHOTOS_BUCKET), id);
+            s3Service.delete(config.get(PHOTOS_BUCKET), id);
         } catch (AmazonClientException e) {
             logger.error(format("Can not delete photo for beacon [%s] ", id), e);
         }

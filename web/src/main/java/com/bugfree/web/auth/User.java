@@ -2,12 +2,14 @@ package com.bugfree.web.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.social.security.SocialUserDetails;
 
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+@Document
 public class User implements SocialUserDetails {
 
 	@Id
@@ -34,8 +36,6 @@ public class User implements SocialUserDetails {
 
 	private boolean accountEnabled;
 
-	private Set<UserAuthority> authorities;
-
 	public String getId() {
 		return id;
 	}
@@ -61,42 +61,11 @@ public class User implements SocialUserDetails {
 
 	@Override
 	@JsonIgnore
-	public Set<UserAuthority> getAuthorities() {
-		return authorities;
-	}
-
-	// Use Roles as external API
-	public Set<UserRole> getRoles() {
-		Set<UserRole> roles = EnumSet.noneOf(UserRole.class);
-		if (authorities != null) {
-			for (UserAuthority authority : authorities) {
-				roles.add(UserRole.valueOf(authority));
-			}
-		}
-		return roles;
-	}
-
-	public void setRoles(Set<UserRole> roles) {
-		for (UserRole role : roles) {
-			grantRole(role);
-		}
-	}
-
-	public void grantRole(UserRole role) {
-		if (authorities == null) {
-			authorities = new HashSet<UserAuthority>();
-		}
-		authorities.add(role.asAuthorityFor(this));
-	}
-
-	public void revokeRole(UserRole role) {
-		if (authorities != null) {
-			authorities.remove(role.asAuthorityFor(this));
-		}
-	}
-
-	public boolean hasRole(UserRole role) {
-		return authorities.contains(role.asAuthorityFor(this));
+	public Set<SimpleGrantedAuthority> getAuthorities() {
+		Set<SimpleGrantedAuthority> auth = new HashSet<>();
+		auth.add(new SimpleGrantedAuthority("USER"));
+		auth.add(new SimpleGrantedAuthority("ADMIN"));
+		return auth;
 	}
 
 	@Override

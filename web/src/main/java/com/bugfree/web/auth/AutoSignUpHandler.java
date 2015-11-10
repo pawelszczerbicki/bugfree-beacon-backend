@@ -11,7 +11,6 @@ public class AutoSignUpHandler implements ConnectionSignUp {
 
     @Autowired
     private UserDao userDao;
-    private volatile long userCount;
 
     @Override
     @Transactional
@@ -22,21 +21,8 @@ public class AutoSignUpHandler implements ConnectionSignUp {
         user.setProviderId(connection.getKey().getProviderId());
         user.setProviderUserId(connection.getKey().getProviderUserId());
         user.setAccessToken(connection.createData().getAccessToken());
-        grantRoles(user);
         userDao.save(user);
         return user.getUserId();
-    }
-
-    private void grantRoles(final User user) {
-        user.grantRole(UserRole.USER);
-
-        //grant admin rights to the first user
-        if (userCount == 0) {
-            userCount = userDao.findAll().size();
-            if (userCount == 0) {
-                user.grantRole(UserRole.ADMIN);
-            }
-        }
     }
 
     private String generateUniqueUserName(final String firstName) {

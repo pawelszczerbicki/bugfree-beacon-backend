@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 
@@ -33,7 +36,17 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.apply(new SpringSocialConfigurer());
+        final SpringSocialConfigurer socialConfigurer = new SpringSocialConfigurer();
+        socialConfigurer.addObjectPostProcessor(new ObjectPostProcessor<SocialAuthenticationFilter>() {
+            @Override
+            public <O extends SocialAuthenticationFilter> O postProcess(O socialAuthenticationFilter) {
+                socialAuthenticationFilter.setAuthenticationSuccessHandler(socialAuthenticationSuccessHandler);
+                return socialAuthenticationFilter;
+            }
+        });
+
+        http.addFilterBefore(statelessAuthenticationFilter, AbstractPreAuthenticatedProcessingFilter.class)
+        .apply(socialConfigurer.userIdSource(userIdSource));
     }
 
     @Bean

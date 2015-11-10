@@ -6,20 +6,12 @@ import com.bugfree.web.auth.StatelessAuthenticationFilter;
 import com.bugfree.web.auth.UserAuthenticationUserIdSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
-import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
-import org.springframework.social.config.annotation.EnableSocial;
-import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 
@@ -27,36 +19,36 @@ import org.springframework.social.security.SpringSocialConfigurer;
 @Configuration
 public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private SocialAuthenticationSuccessHandler socialAuthenticationSuccessHandler;
+    @Autowired
+    private SocialAuthenticationSuccessHandler socialAuthenticationSuccessHandler;
 
-	@Autowired
-	private StatelessAuthenticationFilter statelessAuthenticationFilter;
+    @Autowired
+    private StatelessAuthenticationFilter statelessAuthenticationFilter;
 
-	@Autowired
-	private UserAuthenticationUserIdSource userIdSource;
+    @Autowired
+    private UserAuthenticationUserIdSource userIdSource;
 
-	@Autowired
-	private SocialUserService userService;
+    @Autowired
+    private SocialUserService userService;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.apply(new SpringSocialConfigurer());
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.apply(new SpringSocialConfigurer());
+    }
 
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService);
+    }
 
-	@Override
-	protected SocialUserService userDetailsService() {
-		return userService;
-	}
+    @Override
+    protected SocialUserService userDetailsService() {
+        return userService;
+    }
 }

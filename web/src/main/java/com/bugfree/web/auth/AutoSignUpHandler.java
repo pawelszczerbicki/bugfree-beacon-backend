@@ -18,7 +18,7 @@ public class AutoSignUpHandler implements ConnectionSignUp {
     public String execute(final Connection<?> connection) {
         //add new users to the db with its default roles for later use in SocialAuthenticationSuccessHandler
         final User user = new User();
-        user.setUsername(generateUniqueUserName(connection.fetchUserProfile().getFirstName()));
+        user.setUsername(generateUniqueUserName(connection.getDisplayName()));
         user.setProviderId(connection.getKey().getProviderId());
         user.setProviderUserId(connection.getKey().getProviderUserId());
         user.setAccessToken(connection.createData().getAccessToken());

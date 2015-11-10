@@ -1,7 +1,5 @@
 package com.bugfree.web.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -18,8 +16,8 @@ public class TokenAuthenticationService {
 
 	private final TokenHandler tokenHandler;
 
-	@Autowired
-	public TokenAuthenticationService(@Value("${token.secret}") String secret) {
+	public TokenAuthenticationService() {
+		 String secret = "dfsafjewofjdkljr23oiue03iowjdklwejqeoidjskqw";
 		tokenHandler = new TokenHandler(DatatypeConverter.parseBase64Binary(secret));
 	}
 

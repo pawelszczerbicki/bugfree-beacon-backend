@@ -18,6 +18,7 @@ public class Keys {
     public static final String TWITTER_SECRET = "TWITTER_SECRET";
     public static final String LINKED_IN_KEY = "LINKED_IN_KEY";
     public static final String LINKED_IN_SECRET = "LINKED_IN_SECRET";
+    public static final String LOGIN_REDIRECT_URL = "LOGIN_REDIRECT_URL";
 
     public static final String NOT_FOUND = "Requested resource was not found";
     public static final String INTERNAL_SERVER_ERROR = "Some error occurred. Code [%s], Message [%s]";

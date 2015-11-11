@@ -1,5 +1,7 @@
 package com.bugfree.web.spring;
 
+import com.bugfree.commons.config.ConfigService;
+import com.bugfree.commons.config.Keys;
 import com.bugfree.web.auth.SocialAuthenticationSuccessHandler;
 import com.bugfree.web.auth.SocialUserService;
 import com.bugfree.web.auth.StatelessAuthenticationFilter;
@@ -16,6 +18,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
+
+import static com.bugfree.commons.config.Keys.LOGIN_REDIRECT_URL;
 
 
 @EnableWebSecurity
@@ -34,9 +38,12 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
     @Autowired
     private SocialUserService userService;
 
+	@Autowired
+	private ConfigService config;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final SpringSocialConfigurer socialConfigurer = new SpringSocialConfigurer();
+		SpringSocialConfigurer socialConfigurer = new SpringSocialConfigurer();
         socialConfigurer.addObjectPostProcessor(new ObjectPostProcessor<SocialAuthenticationFilter>() {
             @Override
             public <O extends SocialAuthenticationFilter> O postProcess(O socialAuthenticationFilter) {
@@ -46,7 +53,8 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
         });
 
         http.addFilterBefore(statelessAuthenticationFilter, AbstractPreAuthenticatedProcessingFilter.class)
-        .apply(socialConfigurer.userIdSource(userIdSource));
+        .apply(socialConfigurer.userIdSource(userIdSource).alwaysUsePostLoginUrl(true)
+				.postLoginUrl(config.get(LOGIN_REDIRECT_URL)));
     }
 
     @Bean

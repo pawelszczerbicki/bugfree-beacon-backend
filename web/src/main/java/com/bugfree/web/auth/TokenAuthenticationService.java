@@ -47,8 +47,8 @@ public class TokenAuthenticationService {
 
 	private Cookie createCookieForToken(String token) {
 		final Cookie authCookie = new Cookie(AUTH_COOKIE_NAME, token);
-		authCookie.setDomain("");
-		authCookie.setPath("http://beaconic.herokuapp.com");
+		authCookie.setDomain("beaconic.herokuapp.com");
+		authCookie.setPath("/");
 		return authCookie;
 	}
 }

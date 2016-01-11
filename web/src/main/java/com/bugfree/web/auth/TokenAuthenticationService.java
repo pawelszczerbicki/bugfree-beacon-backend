@@ -2,16 +2,13 @@ package com.bugfree.web.auth;
 
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
 @Service
 public class TokenAuthenticationService {
 
 	private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
-	private static final String AUTH_COOKIE_NAME = "AUTH-TOKEN";
 	private static final long TEN_DAYS = 1000 * 60 * 60 * 24 * 10;
 
 	private final TokenHandler tokenHandler;
@@ -21,15 +18,10 @@ public class TokenAuthenticationService {
 		tokenHandler = new TokenHandler(DatatypeConverter.parseBase64Binary(secret));
 	}
 
-	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
+	public String getToken(UserAuthentication authentication) {
 		final User user = authentication.getDetails();
 		user.setExpires(System.currentTimeMillis() + TEN_DAYS);
-		final String token = tokenHandler.createTokenForUser(user);
-
-		// Put the token into a cookie because the client can't capture response
-		// headers of redirects / full page reloads.
-		// (Its reloaded as a result of this response triggering a redirect back to "/")
-		response.addCookie(createCookieForToken(token));
+		return tokenHandler.createTokenForUser(user);
 	}
 
 	public UserAuthentication getAuthentication(HttpServletRequest request) {
@@ -43,12 +35,5 @@ public class TokenAuthenticationService {
 			}
 		}
 		return null;
-	}
-
-	private Cookie createCookieForToken(String token) {
-		final Cookie authCookie = new Cookie(AUTH_COOKIE_NAME, token);
-		authCookie.setDomain(".herokuapp.com");
-		authCookie.setPath("/");
-		return authCookie;
 	}
 }

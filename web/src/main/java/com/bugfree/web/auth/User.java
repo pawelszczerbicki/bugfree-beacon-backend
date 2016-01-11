@@ -26,6 +26,8 @@ public class User implements SocialUserDetails {
 
 	private String username;
 
+	private String password;
+
 	private long expires;
 
 	private boolean accountExpired;
@@ -133,5 +135,9 @@ public class User implements SocialUserDetails {
 
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

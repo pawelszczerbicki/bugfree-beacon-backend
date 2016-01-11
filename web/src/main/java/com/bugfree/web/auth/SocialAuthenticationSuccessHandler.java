@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.String.format;
+
 @Component
 public class SocialAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
@@ -28,7 +30,7 @@ public class SocialAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         final User authenticatedUser = userService.loadUserByUsername(authentication.getName());
         // Add UserAuthentication to the response
         final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);
-        response.sendRedirect(String.format("%s/auth?%s=%s",request.getServerName(), AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
+        response.sendRedirect(format("http://%s/auth?%s=%s",request.getServerName(), AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

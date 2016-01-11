@@ -28,7 +28,7 @@ public class SocialAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         final User authenticatedUser = userService.loadUserByUsername(authentication.getName());
         // Add UserAuthentication to the response
         final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);
-        response.sendRedirect(String.format("http://beaconic.herokuapp.com/auth?%s=%s", AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
+        response.sendRedirect(String.format("%s/auth?%s=%s",request.getServerName(), AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

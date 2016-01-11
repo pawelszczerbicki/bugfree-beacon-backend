@@ -30,7 +30,8 @@ public class SocialAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         final User authenticatedUser = userService.loadUserByUsername(authentication.getName());
         // Add UserAuthentication to the response
         final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);
-        response.sendRedirect(format("http://%s/auth?%s=%s",request.getServerName(), AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
+        //TODO get front end server name
+        response.sendRedirect(format("http://localhost:8080/auth?%s=%s", AUTH_TOKEN_NAME, tokenAuthenticationService.getToken(userAuthentication)));
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }
